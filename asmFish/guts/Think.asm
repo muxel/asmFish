@@ -423,8 +423,8 @@ GD_NewLine
 		mov   edx, dword[rbp+Pos.gamePly]
 	       call   TimeMng_Init
 
-		mov   ecx, 100
-		mov   edx, PawnValueEg
+		mov   edx, 100
+		mov   ecx, PawnValueEg
 		mov   eax, dword[options.contempt]
 	       imul   ecx
 	       idiv   edx
