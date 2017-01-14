@@ -54,11 +54,19 @@ ProfileInc Move_GivesCheck
 	     dd .Castling,0,0,0
 
 
+	; in:
+	;  r9d   contains  to  square (square of rook)
+	;  r8d   contains from square (square of king)
+	;  esi=0 if we are white
+	;  esi=1 if we are black
+	; out:
+	;  esi=0 if white and O-O
+	;  esi=1 if white and O-O-O
+	;  esi=2 if black and O-O
+	;  esi=3 if black and O-O-O
 	      align   8
 .Castling:
-		mov   eax, r9d
-		and   eax, 7
-		cmp   eax, 4
+		cmp   r9d, r8d
 		adc   esi, esi
 	      movzx   eax, byte[rbp-Thread.rootPos+Thread.castling_rfrom+rsi]
 	      movzx   r11d, byte[rbp-Thread.rootPos+Thread.castling_rto+rsi]
